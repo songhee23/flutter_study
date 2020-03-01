@@ -11,14 +11,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-          appBar: AppBar(
-            title:Text('Hello world!')
-          ),
-          body: Text('Hello world!',
-            style: TextStyle(fontSize: 30),
-          )),
-    );
+      home: HelloPage('야호!'));
   }
 }
 
@@ -33,9 +26,28 @@ class HelloPage extends StatefulWidget {
 }
 
 class _HelloPageState extends State<HelloPage> {
+  String _message = "Hello, world!!";
+
   @override
   Widget build(BuildContext context) {
-    return Text(widget.title, style: TextStyle(fontSize: 30));
+    return Scaffold(
+        floatingActionButton:
+          FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: _changeMessage),
+        appBar: AppBar(
+            title:Text(widget.title)
+        ),
+        body: Text(_message,
+          style: TextStyle(fontSize: 30), 
+        )
+    );
+  }
+
+  void _changeMessage() {
+    setState(() {
+      _message = '헬로 월드!';
+    });
   }
 }
 
